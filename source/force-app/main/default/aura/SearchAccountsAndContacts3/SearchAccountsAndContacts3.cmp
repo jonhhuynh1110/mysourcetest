@@ -1,0 +1,67 @@
+<aura:component controller = "SearchAccountsAndContactsController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="searchResult" type="List"/>
+    <aura:attribute name="searchKeyword" type="String"/>
+    <aura:attribute name="TotalNumberOfRecord" type="integer" default="0"/>
+    
+    <lightning:spinner variant="brand" size="large" aura:id="Id_spinner" class="slds-hide" />
+    
+    <div class="slds-m-around_medium">
+    <!-- SEARCH INPUT AND SEARCH BUTTON--> 
+        <lightning:layout>
+            <lightning:layoutItem size="3" padding="around-small">
+                <lightning:input value="{!v.searchKeyword}"
+                                required="true"
+                                placeholder="search Accounts and Contact.."
+                                aura:id="searchField"
+                                variant = "label-hidden"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="2" padding="around-small">
+                <lightning:button onclick="{!c.doSearch}"
+                                variant="brand"
+                                label="Search"
+                                iconName="utility:search"/> 
+            </lightning:layoutItem>
+        </lightning:layout>
+        
+        <!-- TABLE CONTENT--> 
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="S.no">S.no</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Record Name">Record Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Record Type">Record Type</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Click to open">Counter</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody> 
+                <aura:iteration items="{!v.searchResult}" var="tmp" indexVar="count">
+                    <tr>
+                        <td>
+                            <div class="slds-truncate">{!count + 1}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{!tmp.recordName}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{!tmp.recordType}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{!tmp.counter}</div>
+                        </td>
+                        <td colspan="4">
+                            <a onclick="{!c.doIncrementCounter}" data-record="{!count}">Increment Counter</a>
+                        </td> 
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+</aura:component>
