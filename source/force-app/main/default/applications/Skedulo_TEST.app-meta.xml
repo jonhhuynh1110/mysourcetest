@@ -10,6 +10,8 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Skedulo TEST</label>
     <navType>Standard</navType>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
     <tabs>Search</tabs>
     <tabs>Task_3</tabs>
     <uiType>Lightning</uiType>
